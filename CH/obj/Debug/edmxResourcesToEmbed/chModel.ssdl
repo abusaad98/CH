@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CourseManagmentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="cart">
+    <Key>
+      <PropertyRef Name="cart_id" />
+    </Key>
+    <Property Name="cart_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="course_id" Type="int" Nullable="false" />
+    <Property Name="cart_date" Type="date" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="course">
+    <Key>
+      <PropertyRef Name="course_id" />
+    </Key>
+    <Property Name="course_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="course_pic" Type="varchar(max)" Nullable="false" />
+    <Property Name="course_title" Type="varchar(max)" Nullable="false" />
+    <Property Name="course_description" Type="varchar(max)" Nullable="false" />
+    <Property Name="course_goals" Type="varchar(max)" Nullable="false" />
+    <Property Name="course_from_date" Type="date" Nullable="false" />
+    <Property Name="course_to_date" Type="date" Nullable="false" />
+    <Property Name="course_price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="institute_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="course_registerd">
+    <Key>
+      <PropertyRef Name="cr_id" />
+    </Key>
+    <Property Name="cr_id" Type="int" Nullable="false" />
+    <Property Name="invoice_id" Type="int" Nullable="false" />
+    <Property Name="course_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="institute">
+    <Key>
+      <PropertyRef Name="institute_id" />
+    </Key>
+    <Property Name="institute_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="institute_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="institute_city" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="institute_address" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="institute_phone_no" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="invoice">
+    <Key>
+      <PropertyRef Name="inv_id" />
+    </Key>
+    <Property Name="inv_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="course_id" Type="int" Nullable="false" />
+    <Property Name="inv_total" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="inv_date" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_fname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="user_lname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="user_email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="user_password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="user_phone_no" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="user_type" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__course__institut__57DD0BE4">
+    <End Role="institute" Type="Self.institute" Multiplicity="1" />
+    <End Role="course" Type="Self.course" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="institute">
+        <PropertyRef Name="institute_id" />
+      </Principal>
+      <Dependent Role="course">
+        <PropertyRef Name="institute_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__course_re__cours__59C55456">
+    <End Role="course" Type="Self.course" Multiplicity="1" />
+    <End Role="course_registerd" Type="Self.course_registerd" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="course">
+        <PropertyRef Name="course_id" />
+      </Principal>
+      <Dependent Role="course_registerd">
+        <PropertyRef Name="course_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__course_re__invoi__58D1301D">
+    <End Role="invoice" Type="Self.invoice" Multiplicity="1" />
+    <End Role="course_registerd" Type="Self.course_registerd" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="invoice">
+        <PropertyRef Name="inv_id" />
+      </Principal>
+      <Dependent Role="course_registerd">
+        <PropertyRef Name="invoice_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__invoice__course___56E8E7AB">
+    <End Role="course" Type="Self.course" Multiplicity="1" />
+    <End Role="invoice" Type="Self.invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="course">
+        <PropertyRef Name="course_id" />
+      </Principal>
+      <Dependent Role="invoice">
+        <PropertyRef Name="course_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__invoice__user_id__625A9A57">
+    <End Role="users" Type="Self.users" Multiplicity="1" />
+    <End Role="invoice" Type="Self.invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="invoice">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CourseManagmentModelStoreContainer">
+    <EntitySet Name="cart" EntityType="Self.cart" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="course" EntityType="Self.course" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="course_registerd" EntityType="Self.course_registerd" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="institute" EntityType="Self.institute" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="invoice" EntityType="Self.invoice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__course__institut__57DD0BE4" Association="Self.FK__course__institut__57DD0BE4">
+      <End Role="institute" EntitySet="institute" />
+      <End Role="course" EntitySet="course" />
+    </AssociationSet>
+    <AssociationSet Name="FK__course_re__cours__59C55456" Association="Self.FK__course_re__cours__59C55456">
+      <End Role="course" EntitySet="course" />
+      <End Role="course_registerd" EntitySet="course_registerd" />
+    </AssociationSet>
+    <AssociationSet Name="FK__course_re__invoi__58D1301D" Association="Self.FK__course_re__invoi__58D1301D">
+      <End Role="invoice" EntitySet="invoice" />
+      <End Role="course_registerd" EntitySet="course_registerd" />
+    </AssociationSet>
+    <AssociationSet Name="FK__invoice__course___56E8E7AB" Association="Self.FK__invoice__course___56E8E7AB">
+      <End Role="course" EntitySet="course" />
+      <End Role="invoice" EntitySet="invoice" />
+    </AssociationSet>
+    <AssociationSet Name="FK__invoice__user_id__625A9A57" Association="Self.FK__invoice__user_id__625A9A57">
+      <End Role="users" EntitySet="users" />
+      <End Role="invoice" EntitySet="invoice" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

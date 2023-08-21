@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CourseManagmentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="course">
+    <Key>
+      <PropertyRef Name="course_id" />
+    </Key>
+    <Property Name="course_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="course_pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="course_title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="course_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="course_goals" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="course_from_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="course_to_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="course_price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="institute_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="institute" Relationship="Self.FK__course__institut__57DD0BE4" FromRole="course" ToRole="institute" />
+    <NavigationProperty Name="course_registerd" Relationship="Self.FK__course_re__cours__59C55456" FromRole="course" ToRole="course_registerd" />
+    <NavigationProperty Name="invoices" Relationship="Self.FK__invoice__course___56E8E7AB" FromRole="course" ToRole="invoice" />
+  </EntityType>
+  <EntityType Name="course_registerd">
+    <Key>
+      <PropertyRef Name="cr_id" />
+    </Key>
+    <Property Name="cr_id" Type="Int32" Nullable="false" />
+    <Property Name="invoice_id" Type="Int32" Nullable="false" />
+    <Property Name="course_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="course" Relationship="Self.FK__course_re__cours__59C55456" FromRole="course_registerd" ToRole="course" />
+    <NavigationProperty Name="invoice" Relationship="Self.FK__course_re__invoi__58D1301D" FromRole="course_registerd" ToRole="invoice" />
+  </EntityType>
+  <EntityType Name="institute">
+    <Key>
+      <PropertyRef Name="institute_id" />
+    </Key>
+    <Property Name="institute_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="institute_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="institute_city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="institute_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="institute_phone_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="courses" Relationship="Self.FK__course__institut__57DD0BE4" FromRole="institute" ToRole="course" />
+  </EntityType>
+  <EntityType Name="invoice">
+    <Key>
+      <PropertyRef Name="inv_id" />
+    </Key>
+    <Property Name="inv_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="course_id" Type="Int32" Nullable="false" />
+    <Property Name="inv_total" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="inv_date" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="course" Relationship="Self.FK__invoice__course___56E8E7AB" FromRole="invoice" ToRole="course" />
+    <NavigationProperty Name="course_registerd" Relationship="Self.FK__course_re__invoi__58D1301D" FromRole="invoice" ToRole="course_registerd" />
+    <NavigationProperty Name="user" Relationship="Self.FK__invoice__user_id__503BEA1C" FromRole="invoice" ToRole="users" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="user_fname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="user_lname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="user_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="user_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="user_phone_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="user_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="invoices" Relationship="Self.FK__invoice__user_id__503BEA1C" FromRole="users" ToRole="invoice" />
+  </EntityType>
+  <Association Name="FK__course__institut__57DD0BE4">
+    <End Role="institute" Type="Self.institute" Multiplicity="1" />
+    <End Role="course" Type="Self.course" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="institute">
+        <PropertyRef Name="institute_id" />
+      </Principal>
+      <Dependent Role="course">
+        <PropertyRef Name="institute_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__course_re__cours__59C55456">
+    <End Role="course" Type="Self.course" Multiplicity="1" />
+    <End Role="course_registerd" Type="Self.course_registerd" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="course">
+        <PropertyRef Name="course_id" />
+      </Principal>
+      <Dependent Role="course_registerd">
+        <PropertyRef Name="course_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__invoice__course___56E8E7AB">
+    <End Role="course" Type="Self.course" Multiplicity="1" />
+    <End Role="invoice" Type="Self.invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="course">
+        <PropertyRef Name="course_id" />
+      </Principal>
+      <Dependent Role="invoice">
+        <PropertyRef Name="course_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__course_re__invoi__58D1301D">
+    <End Role="invoice" Type="Self.invoice" Multiplicity="1" />
+    <End Role="course_registerd" Type="Self.course_registerd" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="invoice">
+        <PropertyRef Name="inv_id" />
+      </Principal>
+      <Dependent Role="course_registerd">
+        <PropertyRef Name="invoice_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__invoice__user_id__503BEA1C">
+    <End Role="users" Type="Self.user" Multiplicity="1" />
+    <End Role="invoice" Type="Self.invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="invoice">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CourseManagmentEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="courses" EntityType="Self.course" />
+    <EntitySet Name="course_registerd" EntityType="Self.course_registerd" />
+    <EntitySet Name="institutes" EntityType="Self.institute" />
+    <EntitySet Name="invoices" EntityType="Self.invoice" />
+    <EntitySet Name="users" EntityType="Self.user" />
+    <AssociationSet Name="FK__course__institut__57DD0BE4" Association="Self.FK__course__institut__57DD0BE4">
+      <End Role="institute" EntitySet="institutes" />
+      <End Role="course" EntitySet="courses" />
+    </AssociationSet>
+    <AssociationSet Name="FK__course_re__cours__59C55456" Association="Self.FK__course_re__cours__59C55456">
+      <End Role="course" EntitySet="courses" />
+      <End Role="course_registerd" EntitySet="course_registerd" />
+    </AssociationSet>
+    <AssociationSet Name="FK__invoice__course___56E8E7AB" Association="Self.FK__invoice__course___56E8E7AB">
+      <End Role="course" EntitySet="courses" />
+      <End Role="invoice" EntitySet="invoices" />
+    </AssociationSet>
+    <AssociationSet Name="FK__course_re__invoi__58D1301D" Association="Self.FK__course_re__invoi__58D1301D">
+      <End Role="invoice" EntitySet="invoices" />
+      <End Role="course_registerd" EntitySet="course_registerd" />
+    </AssociationSet>
+    <AssociationSet Name="FK__invoice__user_id__503BEA1C" Association="Self.FK__invoice__user_id__503BEA1C">
+      <End Role="users" EntitySet="users" />
+      <End Role="invoice" EntitySet="invoices" />
+    </AssociationSet>
+    <EntitySet Name="carts" EntityType="CourseManagmentModel.cart" />
+  </EntityContainer>
+  <EntityType Name="cart">
+    <Key>
+      <PropertyRef Name="cart_id" />
+    </Key>
+    <Property Name="cart_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="course_id" Type="Int32" Nullable="false" />
+    <Property Name="cart_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+  </EntityType>
+</Schema>

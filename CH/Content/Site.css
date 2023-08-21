@@ -1,0 +1,196 @@
+﻿te {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-color: #efefef;
+}
+
+.bg {
+    background-color: #4a5066;
+}
+
+.bg-admin {
+    background: #BF360C;
+}
+
+.container.msgcont {
+    position: fixed;
+    width: 360px;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 3px;
+    z-index: 10000;
+}
+
+.defaultitems {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 220px;
+    height: 290px;
+    background: #fff;
+    margin: 0 2px 2px 0;
+    padding: 5px;
+    box-shadow: 0px 2px 4px #ccc;
+}
+
+    .defaultitems img {
+        width: 100%;
+    }
+
+.vdetails img {
+    /* width: 100%; */
+    height: 118px;
+    margin-bottom: 14px;
+}
+
+.d-flex.flex-row {
+    flex-wrap: wrap;
+}
+
+.badge-info {
+    color: #fff;
+    background-color: #648397;
+    margin-bottom: 10px;
+}
+
+.d-flex.flex-row > div {
+    text-align: center;
+}
+
+
+li.nav-item {
+    color: #fff;
+    padding-top: 0;
+}
+
+span.price {
+    color: #FF8F00;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.vdetails.text-center {
+    display: flex;
+}
+
+span.title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.inndetails {
+    text-align: left;
+}
+
+a.nav-link img {
+    width: 30px;
+    margin-left: 10px
+}
+
+a.badge.badge-info {
+    font-weight: normal;
+}
+
+.cartlist {
+    background: #fff;
+    border-radius: 6px;
+    padding: 20px;
+}
+
+.innerTotal {
+    background: #fff;
+    padding: 20px;
+    border-radius: 6px;
+}
+
+td img {
+    width: 130px;
+    margin-right: 16PX;
+}
+
+.divcart {
+    display: flex;
+    padding: 16px;
+}
+
+    .divcart span.title {
+        padding-left: 0px;
+        width: 350px;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+.cart_container {
+    background: #FFF;
+    padding: 11px;
+    direction: ltr;
+}
+
+tr.tfooter {
+    border-top: 2px solid #666;
+    font-weight: bold;
+}
+
+tr.theader {
+    border-bottom: 2px solid #666;
+}
+
+.ckeckcontain {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btncheck {
+    margin-top: 12px;
+    width: 150px;
+}
+
+header.tophead {
+    display: flex;
+    justify-content: space-between;
+}
+
+.inv_container {
+    background: #FFF;
+    padding: 130px 100px;
+    min-height: 1300px;
+    box-shadow: 1px 2px 5px #ccc;
+}
+
+.invtext {
+    width: 197px;
+}
+
+tr.throw {
+    height: 60px;
+}
+
+.contactinfo {
+    display: flex;
+    justify-content: space-between;
+}
+
+.map img {
+    background: #FFF;
+    border: 1px solid #ccc;
+    width: 490px;
+    padding: 5px;
+}
+
+.admtblheader {
+    background-color: #bf360c;
+    color: #FFF;
+    font-weight: bold;
+    height: 44px;
+}
+
+.adminpage tr {
+    height: 44px;
+}

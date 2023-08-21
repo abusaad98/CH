@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1bcf1bce502d420da82876e3c98380cf" Name="Diagram1" ZoomLevel="93">
+        <EntityTypeShape EntityType="CourseManagmentModel.course" Width="1.5" PointX="6.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseManagmentModel.course_registerd" Width="1.5" PointX="3.375" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseManagmentModel.institute" Width="1.5" PointX="6.25" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseManagmentModel.invoice" Width="1.5" PointX="0.875" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseManagmentModel.user" Width="1.5" PointX="0.875" PointY="0.625" IsExpanded="true" />
+        <AssociationConnector Association="CourseManagmentModel.FK__course__institut__57DD0BE4" ManuallyRouted="false" />
+        <AssociationConnector Association="CourseManagmentModel.FK__course_re__cours__59C55456" ManuallyRouted="false" ></AssociationConnector>
+        <AssociationConnector Association="CourseManagmentModel.FK__invoice__course___56E8E7AB" ManuallyRouted="false" />
+        <AssociationConnector Association="CourseManagmentModel.FK__course_re__invoi__58D1301D" ManuallyRouted="false" ></AssociationConnector>
+        <AssociationConnector Association="CourseManagmentModel.FK__invoice__user_id__503BEA1C" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CourseManagmentModel.cart" Width="1.5" PointX="3.375" PointY="4.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

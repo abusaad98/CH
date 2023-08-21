@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CourseManagmentModelStoreContainer" CdmEntityContainer="CourseManagmentEntities">
+    <EntitySetMapping Name="courses">
+      <EntityTypeMapping TypeName="CourseManagmentModel.course">
+        <MappingFragment StoreEntitySet="course">
+          <ScalarProperty Name="course_id" ColumnName="course_id" />
+          <ScalarProperty Name="course_pic" ColumnName="course_pic" />
+          <ScalarProperty Name="course_title" ColumnName="course_title" />
+          <ScalarProperty Name="course_description" ColumnName="course_description" />
+          <ScalarProperty Name="course_goals" ColumnName="course_goals" />
+          <ScalarProperty Name="course_from_date" ColumnName="course_from_date" />
+          <ScalarProperty Name="course_to_date" ColumnName="course_to_date" />
+          <ScalarProperty Name="course_price" ColumnName="course_price" />
+          <ScalarProperty Name="institute_id" ColumnName="institute_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="course_registerd">
+      <EntityTypeMapping TypeName="CourseManagmentModel.course_registerd">
+        <MappingFragment StoreEntitySet="course_registerd">
+          <ScalarProperty Name="cr_id" ColumnName="cr_id" />
+          <ScalarProperty Name="invoice_id" ColumnName="invoice_id" />
+          <ScalarProperty Name="course_id" ColumnName="course_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="institutes">
+      <EntityTypeMapping TypeName="CourseManagmentModel.institute">
+        <MappingFragment StoreEntitySet="institute">
+          <ScalarProperty Name="institute_id" ColumnName="institute_id" />
+          <ScalarProperty Name="institute_name" ColumnName="institute_name" />
+          <ScalarProperty Name="institute_city" ColumnName="institute_city" />
+          <ScalarProperty Name="institute_address" ColumnName="institute_address" />
+          <ScalarProperty Name="institute_phone_no" ColumnName="institute_phone_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="invoices">
+      <EntityTypeMapping TypeName="CourseManagmentModel.invoice">
+        <MappingFragment StoreEntitySet="invoice">
+          <ScalarProperty Name="inv_id" ColumnName="inv_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="course_id" ColumnName="course_id" />
+          <ScalarProperty Name="inv_total" ColumnName="inv_total" />
+          <ScalarProperty Name="inv_date" ColumnName="inv_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="CourseManagmentModel.user">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="user_fname" ColumnName="user_fname" />
+          <ScalarProperty Name="user_lname" ColumnName="user_lname" />
+          <ScalarProperty Name="user_email" ColumnName="user_email" />
+          <ScalarProperty Name="user_password" ColumnName="user_password" />
+          <ScalarProperty Name="user_phone_no" ColumnName="user_phone_no" />
+          <ScalarProperty Name="user_type" ColumnName="user_type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="carts">
+      <EntityTypeMapping TypeName="CourseManagmentModel.cart">
+        <MappingFragment StoreEntitySet="cart">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="cart_date" ColumnName="cart_date" />
+          <ScalarProperty Name="course_id" ColumnName="course_id" />
+          <ScalarProperty Name="cart_id" ColumnName="cart_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
